@@ -25,10 +25,6 @@ public class Util4Frm {
      * 当前登陆用户的ReaderNO，对所有的窗口均适用
      */
     public static String readerNO = "R2006001";
-    /**
-     * 排序的方向，用于对jTable中的列排序
-     */
-    private static boolean sort = false;
 
     /**
      * 设置窗口显示效果，原界面丑拒

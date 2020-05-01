@@ -41,6 +41,8 @@ public class FrmReaderInformation extends javax.swing.JFrame {
         jTableSelectionListener();
         //默认界面丑拒，换成Windows默认界面
         Util4Frm.setUI(this);
+        //添加默认按钮
+        this.getRootPane().setDefaultButton(Renovate);
         RefreshReaderInformation();
     }
 
@@ -97,7 +99,7 @@ public class FrmReaderInformation extends javax.swing.JFrame {
             rowData.add(bookAdmin.getNotreturnnum());
             dtm.addRow(rowData);
         }
-
+        Util4Frm.resizeColumnWidth(jTable1);
         //刷新底部状态栏的标签显示
         Util4Frm.resetBackText(jTable1, lblBack);
     }
@@ -140,6 +142,7 @@ public class FrmReaderInformation extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("读者信息管理 - 图书借阅管理系统");
         setMinimumSize(new java.awt.Dimension(890, 560));
+        setPreferredSize(new java.awt.Dimension(890, 560));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("筛选模式"));
 

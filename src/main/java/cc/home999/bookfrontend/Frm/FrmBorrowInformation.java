@@ -50,6 +50,8 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
 
         UserInfoModel userinfo = userController.userinfo();
         Hello.setText("您好，" + userinfo.getReadername());
+        //添加默认按钮
+        this.getRootPane().setDefaultButton(Select);
         refreshBorrowTable();
     }
 
@@ -165,6 +167,7 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
             rowData.add(borrowReader.getReturndate());
             dtm.addRow(rowData);
         }
+        Util4Frm.resizeColumnWidth(jTable1);
         Util4Frm.resetBackText(nowJTable, lblBack);
     }
 
@@ -193,6 +196,7 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
             rowData.add(borrowReader.getReturndate());
             dtm.addRow(rowData);
         }
+        Util4Frm.resizeColumnWidth(jTable1);
         Util4Frm.resetBackText(nowJTable, lblBack);
     }
 
@@ -221,12 +225,18 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
             rowData.add(bookReader.getCurnum());
             dtm.addRow(rowData);
         }
+        Util4Frm.resizeColumnWidth(jTable1);
         Util4Frm.resetBackText(nowJTable, lblBack);
     }
 
     private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
         // TODO add your handling code here:
-        refreshBookTable();
+        //跳转到图书界面并刷新内容
+        if (jTabbedPane.getSelectedIndex() == 2) {
+            refreshBookTable();
+        } else {
+            jTabbedPane.setSelectedIndex(2);
+        }
     }//GEN-LAST:event_SelectActionPerformed
 
     private void RightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightActionPerformed
@@ -345,7 +355,8 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("借阅信息");
-        setMinimumSize(new java.awt.Dimension(890, 560));
+        setMinimumSize(new java.awt.Dimension(890, 580));
+        setPreferredSize(new java.awt.Dimension(890, 580));
 
         Hello.setText("你好，");
 

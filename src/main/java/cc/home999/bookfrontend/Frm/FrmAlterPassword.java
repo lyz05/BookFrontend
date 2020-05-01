@@ -217,6 +217,7 @@ public class FrmAlterPassword extends javax.swing.JFrame {
         }
         if (result.getCode() == 200) {
             JOptionPane.showMessageDialog(null,result.getMessage(),"系统提示",JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } else if (result.getCode() == 403){
             JOptionPane.showMessageDialog(null, result.getMessage(),"系统提示",JOptionPane.ERROR_MESSAGE);
         } else {
