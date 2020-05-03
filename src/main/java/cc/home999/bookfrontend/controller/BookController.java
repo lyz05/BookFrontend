@@ -35,7 +35,7 @@ public class BookController {
      */
     public Msg addbook(Book book) {
         String url = baseurl;
-        String json = BookFrontedCon.executePost(url, book);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.POST, book);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -48,7 +48,7 @@ public class BookController {
      */
     public Msg editbook(Book book) {
         String url = baseurl;
-        String json = BookFrontedCon.executePut(url, book);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.PUT, book);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -60,7 +60,7 @@ public class BookController {
      */
     public Msg delbook(String bookno) {
         String url = baseurl + "/" + bookno;
-        String json = BookFrontedCon.executeDelete(url);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.DELETE);
         return JSONObject.parseObject(json, Msg.class);
     }
 }

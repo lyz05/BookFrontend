@@ -35,7 +35,7 @@ public class ReaderController {
      */
     public Msg addreader(Reader reader) {
         String url = baseurl;
-        String json = BookFrontedCon.executePost(url, reader);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.POST, reader);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -47,7 +47,7 @@ public class ReaderController {
      */
     public Msg editreader(Reader reader) {
         String url = baseurl;
-        String json = BookFrontedCon.executePut(url, reader);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.PUT, reader);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -59,7 +59,7 @@ public class ReaderController {
      */
     public Msg delreader(String readerno) {
         String url = baseurl + "/" + readerno;
-        String json = BookFrontedCon.executeDelete(url);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.DELETE);
         return JSONObject.parseObject(json, Msg.class);
     }
 }

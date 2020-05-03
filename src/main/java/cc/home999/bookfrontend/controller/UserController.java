@@ -33,33 +33,33 @@ public class UserController {
 
     public Msg login(User user) {
         String url = baseurl + "/login";
-        String json = BookFrontedCon.executePost(url, user);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, user);
         return JSONObject.parseObject(json, Msg.class);
     }
 
     public Msg logout() {
         String url = baseurl + "/logout";
-        String json = BookFrontedCon.executeGet(url);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.GET);
         return JSONObject.parseObject(json, Msg.class);
     }
 
     public UserInfoModel userinfo() {
         String url = baseurl + "/userinfo";
-        String json = BookFrontedCon.executeGet(url);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.GET);
         return JSONObject.parseObject(json, UserInfoModel.class);
     }
 
     public Msg psdalter(AlterPasswordModel info) {
         String url = baseurl + "/psdalter";
-        String json = BookFrontedCon.executePost(url, info);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, info);
         return JSONObject.parseObject(json, Msg.class);
     }
 
     public Msg resetpwd(String readerno) {
         String url = baseurl + "/resetpwd";
-        Map<String,String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("readerno", readerno);
-        String json = BookFrontedCon.executePost(url,map);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, map);
         return JSONObject.parseObject(json, Msg.class);
     }
 }

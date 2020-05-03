@@ -18,19 +18,19 @@ public class BorrowController {
 
     public Msg addborrow(String bookno) {
         String url = baseurl + "/" + bookno;
-        String json = BookFrontedCon.executePost(url);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.POST);
         return JSONObject.parseObject(json, Msg.class);
     }
 
     public Msg retborrow(String bookno) {
         String url = baseurl + "/" + bookno;
-        String json = BookFrontedCon.executeDelete(url);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.DELETE);
         return JSONObject.parseObject(json, Msg.class);
     }
 
     public Msg renewborrow(String bookno) {
         String url = baseurl + "/" + bookno;
-        String json = BookFrontedCon.executePut(url);
+        String json = BookFrontedCon.execute(url,BookFrontedCon.PUT);
         return JSONObject.parseObject(json, Msg.class);
     }
 }

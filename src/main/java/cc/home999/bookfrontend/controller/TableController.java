@@ -38,7 +38,7 @@ public class TableController {
      */
     public TableModel bookadmins(Book book) {
         String url = baseurl + "/bookadmins";
-        String json = BookFrontedCon.executePost(url, book);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, book);
         return JSONObject.parseObject(json, TableModel.class);
     }
 
@@ -50,7 +50,7 @@ public class TableController {
      */
     public TableModel readeradmins(Reader reader) {
         String url = baseurl + "/readeradmins";
-        String json = BookFrontedCon.executePost(url, reader);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, reader);
         return JSONObject.parseObject(json, TableModel.class);
     }
 
@@ -62,9 +62,9 @@ public class TableController {
      */
     public TableModel borrowreaders(String table) {
         String url = baseurl + "/borrowreaders";
-        Map<String,String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("table", table);
-        String json = BookFrontedCon.executePost(url, map);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, map);
         return JSONObject.parseObject(json, TableModel.class);
     }
 
@@ -76,7 +76,7 @@ public class TableController {
      */
     public TableModel bookreaders(BookReaderModel bookReader) {
         String url = baseurl + "/bookreaders";
-        String json = BookFrontedCon.executePost(url, bookReader);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, bookReader);
         return JSONObject.parseObject(json, TableModel.class);
     }
 }
