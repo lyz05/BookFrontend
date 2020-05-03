@@ -80,6 +80,9 @@ public class FrmReaderInformation extends javax.swing.JFrame {
     //刷新、查询读者信息
     private void RefreshReaderInformation() {
         TableModel tableModel = tableController.readeradmins(getReader());
+        if (Util4Frm.judgenull(tableModel)) {
+            return;
+        }
         List<?> readeradmins = tableModel.getRows();
 
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();//创建model
@@ -411,6 +414,9 @@ public class FrmReaderInformation extends javax.swing.JFrame {
         // TODO add your handling code here:
         //若编辑框是否为空，系统提示
         Msg msg = readerController.addreader(getReader());
+        if (Util4Frm.judgenull(msg)) {
+            return;
+        }
         if (msg.getCode() == 200) {
             JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             //重置所有文本框
@@ -517,6 +523,9 @@ public class FrmReaderInformation extends javax.swing.JFrame {
             Add.setEnabled(false);
         } else {
             Msg msg = readerController.editreader(getReader());
+            if (Util4Frm.judgenull(msg)) {
+                return;
+            }
             if (msg.getCode() == 200) {
                 JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -543,6 +552,9 @@ public class FrmReaderInformation extends javax.swing.JFrame {
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
         Msg msg = readerController.delreader(getreaderno());
+        if (Util4Frm.judgenull(msg)) {
+            return;
+        }
         if (msg.getCode() == 200) {
             JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             //刷新、查询读者信息

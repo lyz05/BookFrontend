@@ -123,6 +123,9 @@ public class FrmBookManager extends javax.swing.JFrame {
      */
     private void RefreshBookInformation() {
         TableModel tableModel = tableController.bookadmins(getbook());
+        if (Util4Frm.judgenull(tableModel)) {
+            return;
+        }
         List<?> bookadmins = tableModel.getRows();
 
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();//创建model
@@ -477,6 +480,9 @@ public class FrmBookManager extends javax.swing.JFrame {
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
         Msg msg = bookController.delbook(getbookno());
+        if (Util4Frm.judgenull(msg)) {
+            return;
+        }
         if (msg.getCode() == 200) {
             JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             RefreshBookInformation();
@@ -505,6 +511,9 @@ public class FrmBookManager extends javax.swing.JFrame {
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
         Msg msg = bookController.addbook(getbook());
+        if (Util4Frm.judgenull(msg)) {
+            return;
+        }
         if (msg.getCode() == 200) {
             JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             resetTextfiled();
@@ -550,6 +559,9 @@ public class FrmBookManager extends javax.swing.JFrame {
             Add.setEnabled(false);
         } else {
             Msg msg = bookController.editbook(getbook());
+            if (Util4Frm.judgenull(msg)) {
+                return;
+            }
             if (msg.getCode() == 200) {
                 JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             } else {

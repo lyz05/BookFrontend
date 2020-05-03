@@ -144,4 +144,14 @@ public class Util4Frm {
         return JOptionPane.showConfirmDialog(null, "你确认重置该用户密码吗？", "系统提示", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
     }
 
+    /**
+     * 判断请求返回对象是否为空
+     * @param obj 
+     */
+    public static boolean judgenull(Object obj) {
+        if (obj==null){
+            JOptionPane.showMessageDialog(null, "网络连接异常或请求接口数据失败，请检查网络连接！","系统提示",JOptionPane.ERROR_MESSAGE);
+        }
+        return obj==null;
+    }
 }

@@ -115,6 +115,9 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
         } else {
             msg = borrowController.addborrow(BookNO);
         }
+        if (Util4Frm.judgenull(msg)) {
+            return;
+        }
         if (msg.getCode() == 200) {
             JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -135,6 +138,9 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
             return;
         }
         Msg msg = borrowController.renewborrow(getbookno());
+        if (Util4Frm.judgenull(msg)) {
+            return;
+        }
         if (msg.getCode() == 200) {
             JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -148,8 +154,9 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
      * @param appendsql 追加的sql
      */
     private void refreshBorrowTable() {
-        TableModel bookreaders = tableController.borrowreaders("Borrow");
-        List<?> borrowReaders = bookreaders.getRows();
+        TableModel borrowreaders = tableController.borrowreaders("Borrow");
+        Util4Frm.judgenull(borrowreaders);
+        List<?> borrowReaders = borrowreaders.getRows();
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();//创建model
         Vector dataVector = dtm.getDataVector();
         while (dtm.getRowCount() > 0) {
@@ -177,8 +184,9 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
      * @param appendsql 追加的sql
      */
     private void refreshBorrowHistoryTable() {
-        TableModel bookreaders = tableController.borrowreaders("BorrowHistory");
-        List<?> borrowReaders = bookreaders.getRows();
+        TableModel borrowreaders = tableController.borrowreaders("BorrowHistory");
+        Util4Frm.judgenull(borrowreaders);
+        List<?> borrowReaders = borrowreaders.getRows();
         DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();//创建model
         Vector dataVector = dtm.getDataVector();
         while (dtm.getRowCount() > 0) {
@@ -207,6 +215,9 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
      */
     private void refreshBookTable() {
         TableModel bookreaders = tableController.bookreaders(getbook());
+        if (Util4Frm.judgenull(bookreaders)) {
+            return;
+        }
         List<?> bookadmins = bookreaders.getRows();
         DefaultTableModel dtm = (DefaultTableModel) jTable3.getModel();//创建model
         Vector dataVector = dtm.getDataVector();

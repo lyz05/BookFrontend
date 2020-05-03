@@ -211,6 +211,9 @@ public class FrmAlterPassword extends javax.swing.JFrame {
         
         AlterPasswordModel form = new AlterPasswordModel(txtReaderNo.getText(),new String(txtPassword.getPassword()),new String(txtNewPassword.getPassword()),new String(txtConfirmNewPassword.getPassword()));
         Msg result = userController.psdalter(form);
+        if (Util4Frm.judgenull(result)) {
+            return;
+        }
         if (result==null) {
             JOptionPane.showMessageDialog(null, "网络连接异常，请检查网络连接", "系统提示", JOptionPane.ERROR_MESSAGE);
             return;

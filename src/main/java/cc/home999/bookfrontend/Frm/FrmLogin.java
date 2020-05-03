@@ -128,10 +128,9 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        User user = new User(txtAccount.getText(), txtPassword.getText(), "zh_CN");
+        User user = new User(txtAccount.getText(), new String(txtPassword.getPassword()), "zh_CN");
         Msg result = userController.login(user);
-        if (result == null) {
-            JOptionPane.showMessageDialog(null, "网络连接异常，请检查网络连接", "系统提示", JOptionPane.ERROR_MESSAGE);
+        if (Util4Frm.judgenull(result)) {
             return;
         }
         if (result.getCode() == 603) {
@@ -152,8 +151,6 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         } else if (result.getCode() == 403) {
             JOptionPane.showMessageDialog(null, result.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "未知错误","系统提示",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
