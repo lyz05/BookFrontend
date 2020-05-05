@@ -130,7 +130,7 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         User user = new User(txtAccount.getText(), new String(txtPassword.getPassword()), "zh_CN");
         Msg result = userController.login(user);
-        if (Util4Frm.judgenull(result)) {
+        if (Util4Frm.judgeNull(result)) {
             return;
         }
         if (result.getCode() == 603) {

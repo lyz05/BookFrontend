@@ -123,7 +123,7 @@ public class FrmBookManager extends javax.swing.JFrame {
      */
     private void RefreshBookInformation() {
         TableModel tableModel = tableController.bookadmins(getbook());
-        if (Util4Frm.judgenull(tableModel)) {
+        if (Util4Frm.judgeNull(tableModel)) {
             return;
         }
         List<?> bookadmins = tableModel.getRows();
@@ -480,14 +480,13 @@ public class FrmBookManager extends javax.swing.JFrame {
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
         Msg msg = bookController.delbook(getbookno());
-        if (Util4Frm.judgenull(msg)) {
+        if (Util4Frm.judgeNull(msg)) {
             return;
         }
+        Util4Frm.showMessage(msg);
         if (msg.getCode() == 200) {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
+            //刷新图书信息
             RefreshBookInformation();
-        } else {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_DeleteActionPerformed
 
@@ -511,15 +510,15 @@ public class FrmBookManager extends javax.swing.JFrame {
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
         Msg msg = bookController.addbook(getbook());
-        if (Util4Frm.judgenull(msg)) {
+        if (Util4Frm.judgeNull(msg)) {
             return;
         }
+        Util4Frm.showMessage(msg);
         if (msg.getCode() == 200) {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
+            //重置所有文本框
             resetTextfiled();
+            //刷新、查询图书信息
             RefreshBookInformation();
-        } else {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AddActionPerformed
 
@@ -551,7 +550,7 @@ public class FrmBookManager extends javax.swing.JFrame {
                 return;
             }
             getdatatotextfiled();//修改后的数据显示在编辑框中
-            Util4Frm.locktextfiled(InputBookNum);//锁定书籍编号这一栏
+            Util4Frm.lockTextFiled(InputBookNum);//锁定书籍编号这一栏
             jPanel1.setBorder(BorderFactory.createTitledBorder("编辑模式"));
             Alter.setText("保存");
             Reset.setEnabled(false);
@@ -559,16 +558,12 @@ public class FrmBookManager extends javax.swing.JFrame {
             Add.setEnabled(false);
         } else {
             Msg msg = bookController.editbook(getbook());
-            if (Util4Frm.judgenull(msg)) {
+            if (Util4Frm.judgeNull(msg)) {
                 return;
             }
-            if (msg.getCode() == 200) {
-                JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
-            }
+            Util4Frm.showMessage(msg);
             resetTextfiled();//重置一下编辑框
-            Util4Frm.unlocktextfiled(InputBookNum);
+            Util4Frm.unlockTextFiled(InputBookNum);
             RefreshBookInformation();
             //加入筛选模式
             jPanel1.setBorder(BorderFactory.createTitledBorder("筛选模式(左栏信息可筛选)"));

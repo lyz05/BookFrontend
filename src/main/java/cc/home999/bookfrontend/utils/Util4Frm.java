@@ -5,6 +5,7 @@
  */
 package cc.home999.bookfrontend.utils;
 
+import cc.home999.bookfrontend.Model.Msg;
 import java.awt.Component;
 import javax.swing.*;
 import javax.swing.JOptionPane;
@@ -113,7 +114,7 @@ public class Util4Frm {
      *
      * @param jtextfield 待锁定控件
      */
-    public static void locktextfiled(JTextField jtextfield) {
+    public static void lockTextFiled(JTextField jtextfield) {
         jtextfield.setEnabled(false);
     }
 
@@ -122,7 +123,7 @@ public class Util4Frm {
      *
      * @param jtextfield 待解锁空间
      */
-    public static void unlocktextfiled(JTextField jtextfield) {
+    public static void unlockTextFiled(JTextField jtextfield) {
         jtextfield.setEnabled(true);
     }
 
@@ -131,7 +132,7 @@ public class Util4Frm {
      *
      * @return 是否按下确认按钮
      */
-    public static boolean confirmdelete() {
+    public static boolean confirmDelete() {
         return JOptionPane.showConfirmDialog(null, "你确认删除该条数据吗？", "系统提示", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
     }
 
@@ -140,18 +141,27 @@ public class Util4Frm {
      *
      * @return 是否按下确认按钮
      */
-    public static boolean confirmresetpwd() {
+    public static boolean confirmResetpwd() {
         return JOptionPane.showConfirmDialog(null, "你确认重置该用户密码吗？", "系统提示", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
     }
 
     /**
      * 判断请求返回对象是否为空
-     * @param obj 
+     *
+     * @param obj
      */
-    public static boolean judgenull(Object obj) {
-        if (obj==null){
-            JOptionPane.showMessageDialog(null, "网络连接异常或请求接口数据失败，请检查网络连接！","系统提示",JOptionPane.ERROR_MESSAGE);
+    public static boolean judgeNull(Object obj) {
+        if (obj == null) {
+            JOptionPane.showMessageDialog(null, "网络连接异常或请求接口数据失败，请检查网络连接！", "系统提示", JOptionPane.ERROR_MESSAGE);
         }
-        return obj==null;
+        return obj == null;
+    }
+
+    public static void showMessage(Msg message) {
+        if (message.getCode() == 200) {
+            JOptionPane.showMessageDialog(null, message.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
+        } else if (message.getCode() == 403) {
+            JOptionPane.showMessageDialog(null, message.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -115,14 +115,10 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
         } else {
             msg = borrowController.addborrow(BookNO);
         }
-        if (Util4Frm.judgenull(msg)) {
+        if (Util4Frm.judgeNull(msg)) {
             return;
         }
-        if (msg.getCode() == 200) {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
-        }
+        Util4Frm.showMessage(msg);
         if (btnBorrowReturn.getText().equals("还书")) {
             refreshBorrowTable();
         } else {
@@ -138,14 +134,10 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
             return;
         }
         Msg msg = borrowController.renewborrow(getbookno());
-        if (Util4Frm.judgenull(msg)) {
+        if (Util4Frm.judgeNull(msg)) {
             return;
         }
-        if (msg.getCode() == 200) {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
-        }
+        Util4Frm.showMessage(msg);
     }
 
     /**
@@ -155,7 +147,7 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
      */
     private void refreshBorrowTable() {
         TableModel borrowreaders = tableController.borrowreaders("Borrow");
-        Util4Frm.judgenull(borrowreaders);
+        Util4Frm.judgeNull(borrowreaders);
         List<?> borrowReaders = borrowreaders.getRows();
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();//创建model
         Vector dataVector = dtm.getDataVector();
@@ -185,7 +177,7 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
      */
     private void refreshBorrowHistoryTable() {
         TableModel borrowreaders = tableController.borrowreaders("BorrowHistory");
-        Util4Frm.judgenull(borrowreaders);
+        Util4Frm.judgeNull(borrowreaders);
         List<?> borrowReaders = borrowreaders.getRows();
         DefaultTableModel dtm = (DefaultTableModel) jTable2.getModel();//创建model
         Vector dataVector = dtm.getDataVector();
@@ -215,7 +207,7 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
      */
     private void refreshBookTable() {
         TableModel bookreaders = tableController.bookreaders(getbook());
-        if (Util4Frm.judgenull(bookreaders)) {
+        if (Util4Frm.judgeNull(bookreaders)) {
             return;
         }
         List<?> bookadmins = bookreaders.getRows();

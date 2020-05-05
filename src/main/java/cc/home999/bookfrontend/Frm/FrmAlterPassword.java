@@ -211,20 +211,12 @@ public class FrmAlterPassword extends javax.swing.JFrame {
         
         AlterPasswordModel form = new AlterPasswordModel(txtReaderNo.getText(),new String(txtPassword.getPassword()),new String(txtNewPassword.getPassword()),new String(txtConfirmNewPassword.getPassword()));
         Msg result = userController.psdalter(form);
-        if (Util4Frm.judgenull(result)) {
+        if (Util4Frm.judgeNull(result)) {
             return;
         }
-        if (result==null) {
-            JOptionPane.showMessageDialog(null, "网络连接异常，请检查网络连接", "系统提示", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (result.getCode() == 200) {
-            JOptionPane.showMessageDialog(null,result.getMessage(),"系统提示",JOptionPane.INFORMATION_MESSAGE);
+        Util4Frm.showMessage(result);
+        if (result.getCode()==200) {
             this.dispose();
-        } else if (result.getCode() == 403){
-            JOptionPane.showMessageDialog(null, result.getMessage(),"系统提示",JOptionPane.ERROR_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "未知错误","系统提示",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAlterPasswordActionPerformed
 

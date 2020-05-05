@@ -80,7 +80,7 @@ public class FrmReaderInformation extends javax.swing.JFrame {
     //刷新、查询读者信息
     private void RefreshReaderInformation() {
         TableModel tableModel = tableController.readeradmins(getReader());
-        if (Util4Frm.judgenull(tableModel)) {
+        if (Util4Frm.judgeNull(tableModel)) {
             return;
         }
         List<?> readeradmins = tableModel.getRows();
@@ -414,17 +414,15 @@ public class FrmReaderInformation extends javax.swing.JFrame {
         // TODO add your handling code here:
         //若编辑框是否为空，系统提示
         Msg msg = readerController.addreader(getReader());
-        if (Util4Frm.judgenull(msg)) {
+        if (Util4Frm.judgeNull(msg)) {
             return;
         }
+        Util4Frm.showMessage(msg);
         if (msg.getCode() == 200) {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             //重置所有文本框
             resetTextfiled();
             //刷新、查询读者信息
             RefreshReaderInformation();
-        } else {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AddActionPerformed
 
@@ -463,15 +461,11 @@ public class FrmReaderInformation extends javax.swing.JFrame {
      */
     private void ResetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetPasswordActionPerformed
         // TODO add your handling code here:
-        if (getreaderno() == null || !Util4Frm.confirmresetpwd()) {
+        if (getreaderno() == null || !Util4Frm.confirmResetpwd()) {
             return;
         }
         Msg msg = userController.resetpwd(getreaderno());
-        if (msg.getCode() == 200) {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
-        }
+        Util4Frm.showMessage(msg);
     }//GEN-LAST:event_ResetPasswordActionPerformed
 
     /**
@@ -513,7 +507,7 @@ public class FrmReaderInformation extends javax.swing.JFrame {
             //读记录到编辑框
             getdatatotextfiled();
             //锁主键（读者号的文本框）
-            Util4Frm.locktextfiled(InputReaderNo);
+            Util4Frm.lockTextFiled(InputReaderNo);
             jPanel1.setBorder(BorderFactory.createTitledBorder("编辑模式"));
             //把修改按钮改成保存按钮
             Alter.setText("保存");
@@ -523,18 +517,14 @@ public class FrmReaderInformation extends javax.swing.JFrame {
             Add.setEnabled(false);
         } else {
             Msg msg = readerController.editreader(getReader());
-            if (Util4Frm.judgenull(msg)) {
+            if (Util4Frm.judgeNull(msg)) {
                 return;
             }
-            if (msg.getCode() == 200) {
-                JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
-            }
+            Util4Frm.showMessage(msg);
             //重置所有文本框
             resetTextfiled();
             //解锁主键（读者号的文本框）
-            Util4Frm.unlocktextfiled(InputReaderNo);
+            Util4Frm.unlockTextFiled(InputReaderNo);
             //刷新读者信息
             RefreshReaderInformation();
             jPanel1.setBorder(BorderFactory.createTitledBorder("筛选模式"));
@@ -552,15 +542,13 @@ public class FrmReaderInformation extends javax.swing.JFrame {
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
         // TODO add your handling code here:
         Msg msg = readerController.delreader(getreaderno());
-        if (Util4Frm.judgenull(msg)) {
+        if (Util4Frm.judgeNull(msg)) {
             return;
         }
+        Util4Frm.showMessage(msg);
         if (msg.getCode() == 200) {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.INFORMATION_MESSAGE);
             //刷新、查询读者信息
             RefreshReaderInformation();
-        } else {
-            JOptionPane.showMessageDialog(null, msg.getMessage(), "系统提示", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_DeleteActionPerformed
 
