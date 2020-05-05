@@ -5,10 +5,13 @@
  */
 package cc.home999.bookfrontend.controller;
 
+import cc.home999.bookfrontend.Frm.FrmLogin;
 import cc.home999.bookfrontend.Model.Msg;
 import cc.home999.bookfrontend.bean.Book;
 import cc.home999.bookfrontend.utils.BookFrontedCon;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -16,6 +19,7 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class BookController {
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
     private static BookController instance = new BookController();
     private final String baseurl = BookFrontedCon.getBaseurl() + "/Book";
 
@@ -34,8 +38,9 @@ public class BookController {
      * @return
      */
     public Msg addbook(Book book) {
+        logger.info("Add Book：" + book);
         String url = baseurl;
-        String json = BookFrontedCon.execute(url,BookFrontedCon.POST, book);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, book);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -47,8 +52,9 @@ public class BookController {
      * @return
      */
     public Msg editbook(Book book) {
+        logger.info("Edit Book:" + book);
         String url = baseurl;
-        String json = BookFrontedCon.execute(url,BookFrontedCon.PUT, book);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.PUT, book);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -59,8 +65,9 @@ public class BookController {
      * @return
      */
     public Msg delbook(String bookno) {
+        logger.info("Delte Book：bookno=" + bookno);
         String url = baseurl + "/" + bookno;
-        String json = BookFrontedCon.execute(url,BookFrontedCon.DELETE);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.DELETE);
         return JSONObject.parseObject(json, Msg.class);
     }
 }

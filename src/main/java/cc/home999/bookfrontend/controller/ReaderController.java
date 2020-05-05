@@ -9,6 +9,8 @@ import cc.home999.bookfrontend.Model.Msg;
 import cc.home999.bookfrontend.bean.Reader;
 import cc.home999.bookfrontend.utils.BookFrontedCon;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -16,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class ReaderController {
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
     private static ReaderController instance = new ReaderController();
     private final String baseurl = BookFrontedCon.getBaseurl() + "/Reader";
 
@@ -34,8 +37,9 @@ public class ReaderController {
      * @return
      */
     public Msg addreader(Reader reader) {
+        logger.info("Add a Reader：" + reader);
         String url = baseurl;
-        String json = BookFrontedCon.execute(url,BookFrontedCon.POST, reader);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.POST, reader);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -46,8 +50,9 @@ public class ReaderController {
      * @return
      */
     public Msg editreader(Reader reader) {
+        logger.info("Edit a Reader：" + reader);
         String url = baseurl;
-        String json = BookFrontedCon.execute(url,BookFrontedCon.PUT, reader);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.PUT, reader);
         return JSONObject.parseObject(json, Msg.class);
     }
 
@@ -58,8 +63,9 @@ public class ReaderController {
      * @return
      */
     public Msg delreader(String readerno) {
+        logger.info("Delete a Reader：readerno=" + readerno);
         String url = baseurl + "/" + readerno;
-        String json = BookFrontedCon.execute(url,BookFrontedCon.DELETE);
+        String json = BookFrontedCon.execute(url, BookFrontedCon.DELETE);
         return JSONObject.parseObject(json, Msg.class);
     }
 }

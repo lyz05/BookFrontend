@@ -29,6 +29,8 @@ public class FrmAlterPassword extends javax.swing.JFrame {
         Util4Frm.setUI(this);
         //将全局读者号显示到对应的文本框中
         txtReaderNo.setText(Util4Frm.readerNO);
+        //添加默认按钮
+        this.getRootPane().setDefaultButton(btnAlterPassword);
     }
 
     /**

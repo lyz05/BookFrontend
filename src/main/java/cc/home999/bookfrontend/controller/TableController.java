@@ -13,6 +13,8 @@ import cc.home999.bookfrontend.utils.BookFrontedCon;
 import com.alibaba.fastjson.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 public class TableController {
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
     private static TableController instance = new TableController();
     private final String baseurl = BookFrontedCon.getBaseurl() + "/Table";
 
@@ -37,6 +40,7 @@ public class TableController {
      * @return
      */
     public TableModel bookadmins(Book book) {
+        logger.info("Request Table bookadmins");
         String url = baseurl + "/bookadmins";
         String json = BookFrontedCon.execute(url, BookFrontedCon.POST, book);
         return JSONObject.parseObject(json, TableModel.class);
@@ -49,6 +53,7 @@ public class TableController {
      * @return
      */
     public TableModel readeradmins(Reader reader) {
+        logger.info("Request Table readeradmins");
         String url = baseurl + "/readeradmins";
         String json = BookFrontedCon.execute(url, BookFrontedCon.POST, reader);
         return JSONObject.parseObject(json, TableModel.class);
@@ -61,6 +66,7 @@ public class TableController {
      * @return
      */
     public TableModel borrowreaders(String table) {
+        logger.info("Request Table borrowreaders:" + table);
         String url = baseurl + "/borrowreaders";
         Map<String, String> map = new HashMap<String, String>();
         map.put("table", table);
@@ -75,6 +81,7 @@ public class TableController {
      * @return
      */
     public TableModel bookreaders(BookReaderModel bookReader) {
+        logger.info("Request Table bookreaders");
         String url = baseurl + "/bookreaders";
         String json = BookFrontedCon.execute(url, BookFrontedCon.POST, bookReader);
         return JSONObject.parseObject(json, TableModel.class);

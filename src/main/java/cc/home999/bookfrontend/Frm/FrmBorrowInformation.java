@@ -52,7 +52,7 @@ public class FrmBorrowInformation extends javax.swing.JFrame {
         Hello.setText("您好，" + userinfo.getReadername());
         //添加默认按钮
         this.getRootPane().setDefaultButton(Select);
-        refreshBorrowTable();
+        //refreshBorrowTable();
     }
 
     private BookReaderModel getbook() {

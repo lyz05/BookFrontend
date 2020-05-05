@@ -10,13 +10,15 @@ import cc.home999.bookfrontend.bean.User;
 import cc.home999.bookfrontend.controller.UserController;
 import cc.home999.bookfrontend.utils.Util4Frm;
 import javax.swing.JOptionPane;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author congcong
  */
 public class FrmLogin extends javax.swing.JFrame {
-
+    
     UserController userController = UserController.getInstance();
 
     /**
